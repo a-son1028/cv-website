@@ -475,11 +475,13 @@ section {
   transform: scale(1);
 }
 
+.blogs-type {
+  margin-top: 3rem;
+}
 .blogs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
-  margin-top: 3rem;
 }
 .blogs .blog {
   position: relative;
@@ -865,7 +867,6 @@ section {
 @media screen and (max-width: 1250px) {
   .blogs {
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 6rem;
   }
 
   .portfolios {
@@ -1007,13 +1008,13 @@ section {
 }
 
 .blogs-introduction-left {
-  width: 65%;
+  width: 100%;
   padding: 10px;
 }
 
 .blogs-introduction-right {
-  text-align: center;
-  width: 35%;
+  font-size: 16px;
+  width: 60%;
   padding: 10px;
 }
 

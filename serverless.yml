@@ -17,3 +17,6 @@ functions:
     events:
       - http: ANY {proxy+}
       - http: ANY /
+    environment:
+      SENDER_EMAIL: lethanhtuan1028@gmail.com
+      RECEIVER_EMAIL: tuanle@yggsea.io
