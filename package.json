@@ -31,6 +31,6 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "serverless-offline": "^9.1.3"
+    "serverless-offline": "^9.3.1"
   }
 }
