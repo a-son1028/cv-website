@@ -5,7 +5,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs12.x # Node JS version
+  runtime: nodejs14.x # Node JS version
   memorySize: 512
   timeout: 15
   stage: production
@@ -19,4 +19,4 @@ functions:
       - http: ANY /
     environment:
       SENDER_EMAIL: lethanhtuan1028@gmail.com
-      RECEIVER_EMAIL: tuanle@yggsea.io
+      RECEIVER_EMAIL: lethanhtuan1028@gmail.com

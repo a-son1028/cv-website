@@ -1,14 +1,10 @@
-const AWS = require("aws-sdk");
-const path = require("path");
-const ejs = require("ejs");
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
+const sesClient = new SESClient({ region: "us-east-1" });
 
-const AWS_SES = new AWS.SES({
-  region: "us-east-1",
-});
 const { SENDER_EMAIL } = process.env;
 
 const sendEmail = (recipientEmails, html, subject) => {
-  const params = {
+  const sendEmailCommand = new SendEmailCommand({
     Source: SENDER_EMAIL,
     Destination: {
       ToAddresses: recipientEmails,
@@ -26,9 +22,9 @@ const sendEmail = (recipientEmails, html, subject) => {
         Data: subject,
       },
     },
-  };
+  });
 
-  return AWS_SES.sendEmail(params).promise();
+  return sesClient.send(sendEmailCommand);
 };
 
 module.exports = {

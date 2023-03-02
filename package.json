@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/fedosejev/express-ejs",
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.282.0",
     "@serverless/utils": "^6.7.0",
     "aws-serverless-express": "^3.4.0",
     "body-parser": "^1.20.0",
