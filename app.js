@@ -26,6 +26,10 @@ const PORT = 8080;
 
 var router = express.Router();
 
+router.get("/paragraph", async function (request, response) {
+  response.render("projects/paragraph");
+})
+
 router.get("/", async function (request, response) {
   const user = await userModel.get({
     id: "c1ae7243-738e-4356-8b1f-cc4c8ad76a0d",

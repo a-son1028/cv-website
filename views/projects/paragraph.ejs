@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Display JSON Array as Table</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+            /* Wrap long words */
+        }
+
+        th:first-child,
+        td:first-child {
+            width: 50px;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 70%;
+        }
+
+        td {
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JSON Array as Table:</h1>
+    <div id="json-table"></div>
+
+    <script type="module">
+        import jsonArray from 'https://haxuanson.s3.amazonaws.com/app-paragraph.json' assert {type: 'json'};
+
+        // Create Table Header Row
+        var table = document.createElement("table");
+        var headerRow = table.insertRow();
+        for (var key in jsonArray[0]) {
+            var headerCell = headerRow.insertCell();
+            headerCell.innerHTML = "<b>" + key.toUpperCase() + "</b>";
+        }
+
+        // Create Table Body Rows
+        for (var i = 0; i < jsonArray.length; i++) {
+            var bodyRow = table.insertRow();
+            for (var key in jsonArray[i]) {
+                var bodyCell = bodyRow.insertCell();
+                bodyCell.innerHTML = jsonArray[i][key];
+            }
+        }
+
+        // Display Table
+        var jsonTableDiv = document.getElementById("json-table");
+        jsonTableDiv.appendChild(table);
+    </script>
+</body>
+
+</html>
