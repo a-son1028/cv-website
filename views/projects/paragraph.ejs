@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Display JSON Array as Table</title>
+    <title>Projects</title>
     <style>
         body {
             margin: 0;
@@ -45,7 +45,7 @@
     <div id="json-table"></div>
 
     <script type="module">
-        import jsonArray from 'https://haxuanson.s3.amazonaws.com/app-paragraph.json' assert {type: 'json'};
+        import jsonArray from 'https://haxuanson.s3.amazonaws.com/app-paragraph(1).json' assert {type: 'json'};
 
         // Create Table Header Row
         var table = document.createElement("table");
@@ -67,6 +67,58 @@
         // Display Table
         var jsonTableDiv = document.getElementById("json-table");
         jsonTableDiv.appendChild(table);
+
+
+        await fetch('https://haxuanson.s3.amazonaws.com/app-paragraph(2).json')
+        .then((response) => response.json())
+        .then((rows) => {
+           const parent = document.getElementsByTagName("tbody");
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                
+                var newRow = document.createElement("tr");
+                for (var key in row) {
+                    var cell = document.createElement("td");
+                    cell.textContent = row[key]
+                    newRow.appendChild(cell);
+                }
+                parent[0].appendChild(newRow);
+           }
+        })
+
+        await fetch('https://haxuanson.s3.amazonaws.com/app-paragraph(3).json')
+                .then((response) => response.json())
+                .then((rows) => {
+                    const parent = document.getElementsByTagName("tbody");
+                    for (let i = 0; i < rows.length; i++) {
+                        const row = rows[i];
+
+                        var newRow = document.createElement("tr");
+                        for (var key in row) {
+                            var cell = document.createElement("td");
+                            cell.textContent = row[key]
+                            newRow.appendChild(cell);
+                        }
+                        parent[0].appendChild(newRow);
+                    }
+                })
+
+                await fetch('https://haxuanson.s3.amazonaws.com/app-paragraph(4).json')
+                        .then((response) => response.json())
+                        .then((rows) => {
+                            const parent = document.getElementsByTagName("tbody");
+                            for (let i = 0; i < rows.length; i++) {
+                                const row = rows[i];
+
+                                var newRow = document.createElement("tr");
+                                for (var key in row) {
+                                    var cell = document.createElement("td");
+                                    cell.textContent = row[key]
+                                    newRow.appendChild(cell);
+                                }
+                                parent[0].appendChild(newRow);
+                            }
+                        })
     </script>
 </body>
 
