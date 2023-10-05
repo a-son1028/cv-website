@@ -52,7 +52,7 @@ router.post("/contact", async function (request, response) {
   const { fullName, email, subject, message } = request.body;
 
   await SES.sendEmail(
-    ["haxuanson123@gmail.com", "ha.son@rmit.edu.vn", "tuanle@yggsea.io"],
+    ["haxuanson123@gmail.com", "ha.son@rmit.edu.vn", "lethanhtuan1028@gmail.com"],
     `
     Full name: ${fullName} <br/>
     Email: ${email} <br/>
@@ -67,8 +67,8 @@ router.post("/contact", async function (request, response) {
 
 app.use("/", router);
 
-app.listen(PORT, function () {
-  console.log("Listening on port " + PORT);
-});
+// app.listen(PORT, function () {
+//   console.log("Listening on port " + PORT);
+// });
 
 module.exports = app;
