@@ -1,6 +1,8 @@
 "use strict";
 const warmer = require("lambda-warmer");
-
+const awsServerlessExpress = require("aws-serverless-express");
+const app = require("./app");
+const server = awsServerlessExpress.createServer(app);
 
 exports.handler = (event, context) => {
   // Start a promise chain
@@ -10,9 +12,7 @@ exports.handler = (event, context) => {
       return "warmed";
     }
     
-    const awsServerlessExpress = require("aws-serverless-express");
-    const app = require("./app");
-    const server = awsServerlessExpress.createServer(app);
+    
     // Proceed with handler logic
     awsServerlessExpress.proxy(server, event, context);
   });
