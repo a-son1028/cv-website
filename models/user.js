@@ -1,8 +1,10 @@
 const dynamoose = require("dynamoose");
 
-dynamoose.aws.sdk.config.update({
+const ddb = new dynamoose.aws.ddb.DynamoDB({
   region: "us-east-1",
 });
+dynamoose.aws.ddb.set(ddb);
+
 const Schema = dynamoose.Schema;
 
 const DYNAMODB_TABLE = "user";
