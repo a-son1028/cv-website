@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 const _ = require("lodash");
+var axios = require('axios');
 
 const SES = require("./services/ses");
 
@@ -31,6 +32,8 @@ router.get("/paragraph", async function (request, response) {
 })
 
 router.get("/", async function (request, response) {
+  const ip = request.header['CF-Connecting-IP'] || request.headers['x-forwarded-for'] || request.socket.remoteAddress;
+  console.log(ip)
   const user = await userModel.get({
     id: "c1ae7243-738e-4356-8b1f-cc4c8ad76a0d",
   });
@@ -50,6 +53,21 @@ router.get("/", async function (request, response) {
 
 router.post("/contact", async function (request, response) {
   const { fullName, email, subject, message } = request.body;
+  const token = request.body["cf-turnstile-response"];
+  const ip = request.header['CF-Connecting-IP'] || request.headers['x-forwarded-for'] || request.socket.remoteAddress;
+
+  const url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+  const result = await axios.default.post(url, {
+    secret: "0x4AAAAAAAeoE2lN9KfdVTPAbeADO5SF54s",
+    response: token,
+    remoteip: ip.split(",")[0].trim()
+  });
+
+  const outcome = await result.data;
+	if (!outcome.success) {
+		return response.status(400).send('Invalid reCAPTCHA. Please try again.');
+	}
+  
 
   await SES.sendEmail(
     ["haxuanson123@gmail.com", "ha.son@rmit.edu.vn", "lethanhtuan1028@gmail.com"],
